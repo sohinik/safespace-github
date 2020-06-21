@@ -3,12 +3,8 @@
     src: url(fredericka-the-great/FrederickatheGreat-Regular.ttf);
 }
 @font-face {
-    font-family: Raleway-Light;
-    src: url(static/Raleway/Raleway-Light.ttf);
-}
-@font-face {
-    font-family: Raleway-Bold;
-    src: url(static/Raleway/Raleway-Bold.ttf);
+    font-family: Gabriela;
+    src: url(Gabriela/Gabriela-Regular.ttf);
 }
 
 
