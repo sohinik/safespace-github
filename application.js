@@ -28,11 +28,22 @@ var submitUnsafe = function () {
   var loc = $("#location").val();
 
   // Push a new recommendation to the database using those values
-  unsafe.push({
+  unsafe.child(secret).set({
     "name": name,
     "secret": secret,
     "location": loc
-  });
+  }).then().catch();
+};
+
+
+// Save a new recommendation to the database, using the input in the form
+var submitSafe = function () {
+  // Get input values from each of the form elements
+  var name = $("#name").val();
+  var secret = $("#personalSecret").val();
+
+  let userRef = firebase.database().ref("unsafe/" + secret);
+  userRef.remove()
 };
 
 
@@ -45,6 +56,7 @@ $(window).load(function () {
 
   // Find the HTML element with the id recommendationForm, and when the submit
   // event is triggered on that element, call submitRecommendation.
+  $("#safeForm").submit(submitSafe);
   $("#unsafeForm").submit(submitUnsafe);
 
 });
