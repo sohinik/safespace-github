@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC>
+
+<html>
+
+<head> 
+
+    <title>Helper Chat</title>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+
+        <!-- Load the Firebase library before loading the body. -->
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+        <!-- Load the jQuery library, which we'll use to manipulate HTML elements with Javascript. -->
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+        <!-- Load Bootstrap stylesheet, which will is CSS that makes everything prettier and also responsive (aka will work on all devices of all sizes). -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+    $(".header").css("display", "none");
+
+    </script>
+
+
+</head>
+<body>
+
+<script src="application.js"></script>
+
+<header class="header" style="display: flex; background: #AE6F77;">
+        <div class="btn-group" style="display: inline-block; margin: 0 auto;">
+            <a href="chat.html"><button style="font-size: 48px; display: inline-block; margin: 0 auto;">chat</button></a>
+            <a href="unsafe.html"><button style="font-size: 48px; display: inline-block; margin: 0 auto;">unsafe</button></a>
+            <a href="index.html#about"><button style="font-size: 48px; display: inline-block; margin: 0 auto;">about</button></a>
+            <a href="index.html"><button style="font-size: 48px; display: inline-block; margin: 0 auto;">home</button></a>
+        </div>
+
+    </header>
+
+<div id="home" style="background-color: #FFFFFF;">
+    
+    <iframe class="tlkio" src="https://tlk.io/safespace" style="width:80%; height:80%; margin-top: 5%; margin-left: 10%;"></iframe>
+    <script async="" src="https://tlk.io/embed.js" type="text/javascript"></script>
+</div>
+
+
+<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver2 m-b-110">
+					<div class="table100-head" style="z-index: 2; background: #002966;">
+						<table id="ex-table">
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column0"></th>
+									<th class="cell100 column1">Name</th>
+									<th class="cell100 column2">Location</th>
+								</tr>
+							</thead>
+						</table>
+
+					<div class="table100-body js-pscroll" style="z-index: 0;">
+						<script>
+                            var unsafe = firebase.database().ref("unsafe");
+                            unsafe.once('value', function(snapshot){
+                                if(snapshot.exists()){
+                                    var content = '';
+
+                                    snapshot.forEach(function(data){
+                                        var name = data.val().name;
+                                        var location= data.val().location;
+                                        content += '<tr>';
+                                        content += '<td></td>'; //column0
+                                        content += '<td>' + name + '</td>'; //column1
+                                        content += '<td>' + location + '</td>';//column2
+                                        content += '</tr>';
+                                    });
+
+                                    $('#ex-table').append(content);
+                                }
+                            });
+                        </script>
+					</div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+
+</body>
+</html>
